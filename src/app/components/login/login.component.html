@@ -1,1 +1,21 @@
-<p>login works!</p>
+<div class="wrapper">
+    <div class="body">
+        <img class="logo" src="../../../assets/img/login.png" alt="Login">
+        <h1>Login</h1>
+        <form>
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" placeholder="name@example.com">
+                <label>Email address</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" placeholder="Password">
+                <label>Password</label>
+            </div>
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary btn-lg" type="button">Ingresar</button>
+            </div>
+            <p class="mt-3">No tienes cuenta? <a routerLink="/registrar-usuario">Registrar</a></p>
+            <a class="mt-3" routerLink="/recuperar-password">Recuperar Contraseña</a>
+        </form>
+    </div>
+</div>
