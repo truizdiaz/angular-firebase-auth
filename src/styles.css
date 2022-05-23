@@ -23,3 +23,11 @@ html, body {
     padding: 15px;
     text-align: center;
 }
+
+.form-floating {
+    text-align: start;
+}
+
+.errorLabel {
+    margin-left: 5px;
+}

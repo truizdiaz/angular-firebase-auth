@@ -22,8 +22,8 @@ export class RegistrarUsuarioComponent implements OnInit {
     private firebaseError: FirebaseCodeErrorService
   ) {
     this.registrarUsuario = this.fb.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       repetirPassword: ['', Validators.required],
     });
   }
@@ -35,6 +35,7 @@ export class RegistrarUsuarioComponent implements OnInit {
     const password = this.registrarUsuario.value.password;
     const repetirPassowrd = this.registrarUsuario.value.repetirPassword;
 
+    console.log(this.registrarUsuario)
     if (password !== repetirPassowrd) {
       this.toastr.error(
         'Las contraseñas ingresadas deben ser las mismas',

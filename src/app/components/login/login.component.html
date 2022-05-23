@@ -6,13 +6,22 @@
             <div class="form-floating mb-3">
                 <input type="email" formControlName="email" class="form-control" placeholder="name@example.com">
                 <label>Email</label>
+                <span *ngIf="loginUsuario.get('email')?.hasError('required') && loginUsuario.get('email')?.touched" class="text-danger errorLabel">
+                    El <strong>correo</strong> es requerido
+                </span>
+                <span *ngIf="loginUsuario.get('email')?.hasError('email') && loginUsuario.get('email')?.touched" class="text-danger errorLabel">
+                    El <strong>correo</strong> es invalido
+                </span>
             </div>
             <div class="form-floating mb-3">
                 <input type="password" formControlName="password" class="form-control" placeholder="Password">
                 <label>Password</label>
+                <span *ngIf="loginUsuario.get('password')?.hasError('required') && loginUsuario.get('password')?.touched" class="text-danger errorLabel">
+                    La <strong>password</strong> es requerida
+                </span>
             </div>
             <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-primary btn-lg" >Ingresar</button>
+                <button type="submit" class="btn btn-primary btn-lg" [disabled]="loginUsuario.invalid" >Ingresar</button>
             </div>
             <p class="mt-3">No tienes cuenta? <a routerLink="/registrar-usuario">Registrar</a></p>
             <a class="mt-3" routerLink="/recuperar-password">Recuperar Contraseña</a>

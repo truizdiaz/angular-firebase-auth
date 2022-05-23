@@ -6,17 +6,29 @@
             <div class="form-floating mb-3">
                 <input type="email" class="form-control" formControlName="email" placeholder="name@example.com">
                 <label>Email</label>
+                <span *ngIf="registrarUsuario.get('email')?.hasError('required') && registrarUsuario.get('email')?.touched" class="text-danger errorLabel">
+                    El <strong>correo</strong> es requerido
+                </span>
+                <span *ngIf="registrarUsuario.get('email')?.hasError('email') && registrarUsuario.get('email')?.touched" class="text-danger errorLabel">
+                    El <strong>correo</strong> es invalido
+                </span>
             </div>
             <div class="form-floating mb-3">
                 <input type="password" class="form-control" formControlName="password" placeholder="Password">
                 <label>Password</label>
+                <span *ngIf="registrarUsuario.get('password')?.hasError('required') && registrarUsuario.get('password')?.touched" class="text-danger errorLabel">
+                    La <strong>password</strong> es requerida
+                </span>
+                <span *ngIf="registrarUsuario.get('password')?.hasError('minlength') && registrarUsuario.get('password')?.touched" class="text-danger errorLabel">
+                    El <strong>password</strong> debe tener 6 caracteres
+                </span>
             </div>
             <div class="form-floating mb-3">
                 <input type="password" class="form-control" formControlName="repetirPassword" placeholder="Repetir Password">
                 <label>Repetir Passowrd</label>
             </div>
             <div class="d-grid gap-2 mb-3">
-                <button class="btn btn-primary btn-lg" type="submit">Aceptar</button>
+                <button class="btn btn-primary btn-lg" [disabled]="registrarUsuario.invalid" type="submit">Aceptar</button>
             </div>           
             <a routerLink="/login">Volver</a>
         </form>
