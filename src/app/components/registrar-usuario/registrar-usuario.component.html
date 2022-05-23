@@ -1,5 +1,5 @@
 <div class="wrapper">
-    <div class="body">
+    <div *ngIf="!loading" class="body">
         <img class="logo" src="../../../assets/img/login.png" alt="Login">
         <h1>Registrarse</h1>
         <form (ngSubmit)="registrar()" [formGroup]="registrarUsuario">
@@ -21,4 +21,5 @@
             <a routerLink="/login">Volver</a>
         </form>
     </div>
+    <app-spinner *ngIf="loading"></app-spinner>
 </div>
