@@ -35,7 +35,7 @@ export class RegistrarUsuarioComponent implements OnInit {
     const password = this.registrarUsuario.value.password;
     const repetirPassowrd = this.registrarUsuario.value.repetirPassword;
 
-    console.log(this.registrarUsuario)
+    console.log(this.registrarUsuario);
     if (password !== repetirPassowrd) {
       this.toastr.error(
         'Las contraseñas ingresadas deben ser las mismas',
@@ -48,9 +48,7 @@ export class RegistrarUsuarioComponent implements OnInit {
     this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then(() => {
-        this.loading = false;
-        this.toastr.success('El usuario fue registrado con exito!', 'Usuario registrado');
-        this.router.navigate(['/login']);
+        this.verificarCorreo();
       })
       .catch((error) => {
         this.loading = false;
@@ -58,5 +56,15 @@ export class RegistrarUsuarioComponent implements OnInit {
       });
   }
 
- 
+  verificarCorreo() {
+    this.afAuth.currentUser
+      .then((user) => user?.sendEmailVerification())
+      .then(() => {
+        this.toastr.info(
+          'Le enviamos un correo electronico para su verificacion',
+          'Verificar correo'
+        );
+        this.router.navigate(['/login']);
+      });
+  }
 }
